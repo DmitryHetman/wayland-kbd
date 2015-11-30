@@ -1,5 +1,5 @@
 (function() {var implementors = {};
-implementors['wayland_kbd'] = [];
+implementors['wayland_kbd'] = ["impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Iterator</a> for <a class='struct' href='wayland_kbd/struct.MappedKeyboard.html' title='wayland_kbd::MappedKeyboard'>MappedKeyboard</a>",];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);
