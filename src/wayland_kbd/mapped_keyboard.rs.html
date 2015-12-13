@@ -263,6 +263,8 @@
 <span id="221">221</span>
 <span id="222">222</span>
 <span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>wayland_client</span>::{<span class='ident'>Event</span>, <span class='ident'>EventIterator</span>, <span class='ident'>Proxy</span>};
 <span class='kw'>use</span> <span class='ident'>wayland_client</span>::<span class='ident'>wayland</span>::<span class='ident'>seat</span>::{<span class='ident'>WlSeat</span>, <span class='ident'>WlKeyboard</span>, <span class='ident'>WlKeyboardEvent</span>, <span class='ident'>WlKeyboardKeyState</span>};
@@ -322,7 +324,9 @@
 }
 
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>KeyEvent</span> {
-    <span class='ident'>keycode</span>: <span class='ident'>u32</span>,
+    <span class='doccomment'>/// The raw keycode associated with this event. Only use it if</span>
+    <span class='doccomment'>/// you know what you&#39;re doing.</span>
+    <span class='kw'>pub</span> <span class='ident'>keycode</span>: <span class='ident'>u32</span>,
     <span class='ident'>state</span>: <span class='ident'>Arc</span><span class='op'>&lt;</span><span class='ident'>Mutex</span><span class='op'>&lt;</span><span class='ident'>KbState</span><span class='op'>&gt;&gt;</span>,
     <span class='kw'>pub</span> <span class='ident'>serial</span>: <span class='ident'>u32</span>,
     <span class='kw'>pub</span> <span class='ident'>time</span>: <span class='ident'>u32</span>,
@@ -335,7 +339,7 @@
         <span class='self'>self</span>.<span class='ident'>state</span>.<span class='ident'>lock</span>().<span class='ident'>unwrap</span>().<span class='ident'>get_utf8</span>(<span class='self'>self</span>.<span class='ident'>keycode</span>)
     }
 
-    <span class='comment'>// Tries to match this key event as a key symbol according to current keyboard state.</span>
+    <span class='doccomment'>/// Tries to match this key event as a key symbol according to current keyboard state.</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// Returns 0 if not possible (meaning that this keycode maps to more than one key symbol).</span>
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>as_symbol</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>u32</span><span class='op'>&gt;</span> {
